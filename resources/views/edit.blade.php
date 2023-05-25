@@ -15,46 +15,47 @@
                 <a href="./tampil.blade.php" class="btn btn-primary">Kembali</a>
             </div>
         </header>
-
+        @foreach ($data_users as $item)
                     <form class="row g-3" method="post">
                         <input type="hidden" name="pengguna_id" value="<?php echo '#' ?>"
 
                         <div class="col-12">
                             <label for="name" class="form-label">Nama</label>
-                            <input type="text" class="form-control" value="<?php echo 'Dea Nurita Febriana' ?>" id="name" name="name" placeholder="Nama Lengkap">
+                            <input type="text" class="form-control" value="{{$item['name']}}" id="name" name="name" placeholder="Nama Lengkap">
                         </div>
                         <div class="col-md-6">
                             <label for="role" class="form-label">Role</label>
                             <select name="role" class="form-control">
-                                <option value="<?php echo 'pilih role' ?>"></option>
+                                <option value="{{$item['role']}}"></option>
                                 <option value="admin">Admin</option>
                                 <option value="staff">Staff</option>
                             </select>
                         </div>
                         <div class="col-md-6">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" value="<?php echo '12e45ty' ?>">
+                            <input type="password" class="form-control" id="password" name="password" value="{{$item['password']}}">
                         </div>
                         <div class="col-md-6">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" value="<?php echo 'deanuritafebriana@gmail.com' ?>" placeholder="name@examples.com">
+                            <input type="email" class="form-control" id="email" name="email" value="{{$item['email']}}" placeholder="name@examples.com">
                         </div>
                         <div class="col-md-6">
                             <label for="phone" class="form-label">Telp</label>
-                            <input type="number" class="form-control" id="phone" name="phone" value="<?php echo '0859175451790' ?>" placeholder="08xxxx">
+                            <input type="number" class="form-control" id="phone" name="phone" value="{{$item['phone']}}" placeholder="08xxxx">
                         </div>
                         <div class="col-12">
                             <label for="address" class="form-label">Alamat</label>
-                            <input type="text" class="form-control" id="address" name="address" value="<?php echo 'Trenggalek' ?>" placeholder="Masukkan Alamat Lengkap">
+                            <input type="text" class="form-control" id="address" name="address" value="{{$item['address']}}" placeholder="Masukkan Alamat Lengkap">
                         </div>
                         <div class="mb-3">
                             <label for="avatar" class="form-label">Unggah Foto</label>
-                            <input class="form-control" type="file" id="avatar" name="avatar" value="<?php echo 'avatar.jpg' ?>">
+                            <input class="form-control" type="file" id="avatar" name="avatar" value="{{$item['avatar']}}">
                         </div>
                         <div class="col-12">
                             <button type="submit" id="update" name="update" class="btn btn-primary">Simpan</button>
                         </div>
                     </form>
+                @endforeach
     </div>
 </body>
 </html>

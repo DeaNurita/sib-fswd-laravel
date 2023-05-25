@@ -15,6 +15,7 @@
                 <a href="./tampil.blade.php" class="btn btn-primary">Kembali</a>
             </div>
         </header>
+        @foreach ($data_users as $item)
         <form class="row g-3" method="post" enctype= "multipart/form-data">
             <div class="col-12">
                 <label for="name" class="form-label">Nama</label>
@@ -52,6 +53,7 @@
                 <button type="submit" id="tambah" name="tambah" class="btn btn-primary">Tambah</button>
             </div>
         </form>
+        @endforeach
     </div>
 </body>
 </html>

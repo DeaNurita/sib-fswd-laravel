@@ -1,6 +1,15 @@
 <?php
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LandingController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +23,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landing'); 
 });
+
 Route::get('/hallo', function() {
     return "Hallo Nama Saya Dea Nurita Febriana!";
 });
@@ -28,3 +38,14 @@ Route::get('/tambah', [App\Http\Controllers\UserController::class, 'tambahin']);
 Route::get('/edit', [App\Http\Controllers\UserController::class, 'editin']);
 
 Route::get('/detail', [App\Http\Controllers\UserController::class, 'detailin']);
+
+// tugas 23
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+Route::get('/product', [App\Http\Controllers\ProductController::class, 'index'])-> name('product.index');
+
+Route::get('/category', [App\Http\Controllers\CategoryController::class, 'index'])-> name('category.index');
+
+Route::get('/user', [App\Http\Controllers\UserController::class, 'index'])-> name('user.index');
+
+Route::get('/role', [App\Http\Controllers\RoleController::class, 'index'])-> name('role.index');

@@ -15,50 +15,52 @@
                 <a href="./tampil.blade.php" class="btn btn-primary">Kembali</a>
             </div>
         </header>
+        @foreach ($data_users as $item)
                     <form class="row g-3" method="post" enctype= "multipart/form-data">
                         <input type="hidden" name="pengguna_id" value="<?php echo '#'?>">
 
                         <div class="col-12">
                             <label for="name" class="form-label">Nama</label>
                             <p class="form-control">
-                                <?php echo 'Dea Nurita Febriana' ?>
+                                {{$item['name']}}
                             </p>
                         </div>
                         <div class="col-md-6">
                             <label for="role" class="form-label">Role</label>
                             <p class="form-control">
-                                <?php echo 'admin' ?>
+                                {{$item['role']}}
                             </p>
                         </div>
                         <div class="col-md-6">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" value="<?php echo '12e45ty' ?>">
+                            <input type="password" class="form-control" id="password" name="password" value="{{$item['password']}}">
                         </div>
                         <div class="col-md-6">
                             <label for="email" class="form-label">Email</label>
                             <p class="form-control">
-                                <?php echo 'deanuritafebriana@gmail.com' ?>
+                                {{$item['email']}}
                             </p>
                         </div>
                         <div class="col-md-6">
                             <label for="phone" class="form-label">Telp</label>
                             <p class="form-control">
-                                <?php echo '08591754517790'?>
+                                {{$item['phone']}}
                             </p>
                         </div>
                         <div class="col-12">
                             <label for="address" class="form-label">Alamat</label>
                             <p class="form-control">
-                                <?php echo 'Trenggalek'?>
+                                {{$item['address']}}
                             </p>
                         </div>
                         <div class="mb-3">
                             <label for="avatar" class="form-label">Unggah Foto</label>
                             <p class="form-control">
-                            <?php echo 'avatar.jpg'?>
+                                {{$item['avatar']}}
                             </p>
                         </div>
                     </form>
+                @endforeach
     </div>
 </body>
 </html>
