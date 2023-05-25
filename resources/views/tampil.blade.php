@@ -31,7 +31,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($data_users as $item)
+                        {{-- @foreach ($data_users as $item) --}}
                                     <tr>
                                         <td><?php echo '1'?></td>
                                         <td>
@@ -42,12 +42,43 @@
                                             </form>
                                         </td>
                                         <td><img src="avatar.jpg" alt="Avatar" width="50"></td>
+                                        <td><?php echo 'Dea Nurita Febriana'?></td>
+                                        <td><?php echo 'deanuritafebriana@gmail.com'?></td>
+                                        <td><?php echo '0859175451790'?></td>
+                                        <td><?php echo 'admin'?></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><?php echo '2'?></td>
+                                        <td>
+                                            <a href="./detail.blade.php" class="btn btn-primary btn-sm">Detail</a>
+                                            <a href="./edit.blade.php" class="btn btn-warning btn-sm">Edit</a>
+                                            <form method="post" style="display: inline;">
+                                                <button type="submit" name="delete" value="" class="btn btn-danger btn-sm">Hapus</button>
+                                            </form>
+                                        </td>
+                                        <td><img src="avatar.jpg" alt="Avatar" width="50"></td>
+                                        <td><?php echo 'Dea Nurita Febriana'?></td>
+                                        <td><?php echo 'deanuritafebriana@gmail.com'?></td>
+                                        <td><?php echo '0859175451790'?></td>
+                                        <td><?php echo 'admin'?></td>
+                                    </tr>
+                                    {{-- <tr>
+                                        <td><?php echo '3'?></td>
+                                        <td>
+                                            <a href="./detail.blade.php" class="btn btn-primary btn-sm">Detail</a>
+                                            <a href="./edit.blade.php" class="btn btn-warning btn-sm">Edit</a>
+                                            <form method="post" style="display: inline;">
+                                                <button type="submit" name="delete" value="" class="btn btn-danger btn-sm">Hapus</button>
+                                            </form>
+                                        </td>
+                                        <td><img src="avatar.jpg" alt="Avatar" width="50"></td>
                                         <td>{{$item['name']}}</td>
                                         <td>{{$item['email']}}</td>
                                         <td>{{$item['phone']}}</td>
                                         <td>{{$item['role']}}</td>
                                     </tr>
-                        @endforeach
+                        @endforeach --}}
                     </tbody>
                 </table>
             </div>

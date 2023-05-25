@@ -15,7 +15,7 @@
                 <a href="./tampil.blade.php" class="btn btn-primary">Kembali</a>
             </div>
         </header>
-        @foreach ($data_users as $item)
+
         <form class="row g-3" method="post" enctype= "multipart/form-data">
             <div class="col-12">
                 <label for="name" class="form-label">Nama</label>
@@ -53,7 +53,46 @@
                 <button type="submit" id="tambah" name="tambah" class="btn btn-primary">Tambah</button>
             </div>
         </form>
-        @endforeach
+
+        {{-- @foreach ($data_users as $item)
+        <form class="row g-3" method="post" enctype= "multipart/form-data">
+            <div class="col-12">
+                <label for="name" class="form-label">Nama</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Nama Lengkap">
+            </div>
+            <div class="col-md-6">
+                <label for="role" class="form-label">Role</label>
+                <select name="role" class="form-control">
+                    <option value="">Pilih Role Pengguna</option>
+                    <option value="admin">Admin</option>
+                    <option value="staff">Staff</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password">
+            </div>
+            <div class="col-md-6">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="name@examples.com">
+            </div>
+            <div class="col-md-6">
+                <label for="phone" class="form-label">Telp</label>
+                <input type="number" class="form-control" id="phone" name="phone" placeholder="08xxxx">
+            </div>
+            <div class="col-12">
+                <label for="address" class="form-label">Alamat</label>
+                <input type="text" class="form-control" id="address" name="address" placeholder="Masukkan Alamat Lengkap">
+            </div>
+            <div class="mb-3">
+                <label for="avatar" class="form-label">Unggah Foto</label>
+                <input class="form-control" type="file" id="avatar" name="avatar">
+            </div>
+            <div class="col-12">
+                <button type="submit" id="tambah" name="tambah" class="btn btn-primary">Tambah</button>
+            </div>
+        </form>
+        @endforeach --}}
     </div>
 </body>
 </html>

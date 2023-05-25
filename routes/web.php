@@ -31,13 +31,13 @@ Route::get('/hallo', function() {
 });
 
 // tugas 22 "tugas":unknown word.
-Route::get('/tampil', [App\Http\Controllers\UserController::class, 'tampilin']);
+Route::get('/tampil', [UserController::class, 'tampilin']);
 
-Route::get('/tambah', [App\Http\Controllers\UserController::class, 'tambahin']);
+Route::get('/tambah', [UserController::class, 'tambahin']);
 
-Route::get('/edit', [App\Http\Controllers\UserController::class, 'editin']);
+Route::get('/edit', [UserController::class, 'editin']);
 
-Route::get('/detail', [App\Http\Controllers\UserController::class, 'detailin']);
+Route::get('/detail', [UserController::class, 'detailin']);
 
 // tugas 23
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
