@@ -29,14 +29,20 @@
                         <div class="mb-3">
                             <label for="role" class="form-label">Role</label>
                             <select class="form-select" aria-label="role" id="role" name="role">
-                                <option selected disabled>- Choose Role -</option>
+                                <option selected disabled>- Choose role-</option>
                                 @foreach ($roles as $role)
                                     <option value="{{ $role->id }}">{{ $role->name }}</option>
                                 @endforeach
                                 
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        {{-- <div>
+                            <form method="POST" action="/upload" enctype="multipart/form-data">
+                                @csrf
+                                <input type="file" name="image">
+                            </form>
+                        </div> --}}
+                        <button type="submit" id="tambah" name="tambah" class="btn btn-primary">Submit</button>
                         <a href="{{ route('user.index') }}" class="btn btn-secondary">Cancel</a>
                     </form>
                 </div>

@@ -69,7 +69,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::where('id', $id)->with('category')->first();
-        
+        $product = Product::find($id);
         // ambil data brand dan category sebagai isian di pilihan (select)
         $category = Category::all();
         

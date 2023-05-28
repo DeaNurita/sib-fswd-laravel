@@ -12,12 +12,25 @@
                 <table id="datatablesSimple">
                     <thead>
                         <tr>
-                            <th>Genre</th>
-                            <th>Price</th>
+                            <th>Kategori</th>
+                            <th>#</th>
                         </tr>
                     </thead>
                
                     <tbody>
+                        @foreach ($category as $item)
+                        <tr>
+                            <td>{{$item['name']}}</td>
+                            <td>
+                                <a href="{{ route('category.edit', ['id'=> $item->id]) }}" role="button" class="btn btn-warning btn-sm">Edit</a>
+                                <form action="{{route('category.destroy', $item->id)}}" method="post" style="display: inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" name="delete" value="" class="btn btn-danger btn-sm">Hapus</button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
