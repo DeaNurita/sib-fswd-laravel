@@ -1,58 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-    <title>Data Pengguna</title>
-</head>
-<body>
-    
-    <div class="container" style="margin-top: 50px;">
-        <div class="row">
-            <div class="card">
-                <h4>Data Pengguna
-                <a href="./tambah.blade.php" class="btn btn-primary float-end">Tambah Pengguna</a>
-                </h4>
+@extends('layout.main')
 
-            </div>
-            <div class="card-body">
-                <table class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Aksi</th>
-                            <th>Avatar</th>
-                            <th>Nama</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Role</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($data_users as $item)
-                                    <tr>
-                                        <td><?php echo '1'?></td>
-                                        <td>
-                                            <a href="" class="btn btn-primary btn-sm">Detail</a>
-                                            <a href="" class="btn btn-warning btn-sm">Edit</a>
-                                            <form method="post" style="display: inline;">
-                                                <button type="submit" name="delete" value="" class="btn btn-danger btn-sm">Hapus</button>
-                                            </form>
-                                        </td>
-                                        <td><img src="avatar.jpg" alt="Avatar" width="50"></td>
-                                        <td>{{$item['name']}}</td>
-                                        <td>{{$item['email']}}</td>
-                                        <td>{{$item['phone']}}</td>
-                                        <td>{{$item['role']}}</td>
-                                    </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+@section('content')
+    <main>
+        <div class="container-fluid px-4">
+            <h1 class="my-4">User</h1>
+
+            <a href="{{ route('user.create') }}" class="btn btn-primary mb-2">Create User</a>
+
+            <div class="card mb-4">
+                <div class="card-body">
+                    <table id="dataTable" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Avatar</th>
+                                <th>Nama</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Role</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($user as $user)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>
+                                        <img src="https://placehold.co/50x50" alt="avatar">
+                                    </td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->phone }}</td>
+                                    <td>
+                                        <span class="badge  {{ $user->role->name == 'admin' ? 'bg-success' : 'bg-primary' }}">{{ $user->role->name }}</span>
+                                    </td>
+                                    <td>
+                                        <form action="{{ route('user.destroy', $user->id) }}" method="POST" class="d-inline">
+                                            <a href="{{ route('user.edit', $user->id) }}" class="btn btn-warning">Edit</a>
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
-
-</body>
-</html>
+    </main>
+@endsection

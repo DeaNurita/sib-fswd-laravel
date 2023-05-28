@@ -46,7 +46,7 @@
 
       <h1 class="logo me-auto"><a href="index.html">Tentang Jeruk</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      <a href="#" class="logo me-auto"><img src="assets/iconjeruk.png" alt="" class="img-fluid"></a>
 
       <nav id="navbar" class="navbar">
         <ul>
@@ -54,16 +54,11 @@
 
           <li class="dropdown"><a href="#"><span>Product</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="about.html">Kategori</a></li>
-              <li><a href="team.html">Daftar Product</a></li>
+              <li><a class="nav-link" href="#">Kategori</a></li>
+              <li><a class="nav-link" href="#">Daftar Product</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#"><span>Pengguna</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="about.html">Grup Pengguna</a></li>
-              <li><a href="team.html">Daftar Pengguna</a></li>
-            </ul>
-          </li>
+          
           <li><a href="blog.html">Blog</a></li>
 
           <li><a href="contact.html">Contact</a></li>
@@ -348,12 +343,12 @@
   
             <div class="col-lg-3 col-md-6">
               <div class="footer-info">
-                <h3>Sailor</h3>
+                <h3>Tentang Jeruk</h3>
                 <p>
-                  A108 Adam Street <br>
-                  NY 535022, USA<br><br>
-                  <strong>Phone:</strong> +1 5589 55488 55<br>
-                  <strong>Email:</strong> info@example.com<br>
+                  Jalan Kenangan, No.45 <br>
+                  Ds. Ngadisuko, Kec. Durenan, Kab. Trenggalek<br><br>
+                  <strong>Phone:</strong> 085790515760<br>
+                  <strong>Email:</strong> tentangjeruk@gmail.com<br>
                 </p>
                 <div class="social-links mt-3">
                   <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
@@ -366,7 +361,7 @@
             </div>
   
             <div class="col-lg-2 col-md-6 footer-links">
-              <h4>Useful Links</h4>
+              <h4>Link Pendukung</h4>
               <ul>
                 <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
                 <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
@@ -377,19 +372,19 @@
             </div>
   
             <div class="col-lg-3 col-md-6 footer-links">
-              <h4>Our Services</h4>
+              <h4>Pelayanan</h4>
               <ul>
-                <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-                <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-                <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-                <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-                <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+                <li><i class="bx bx-chevron-right"></i> <a href="#">Kirim Kurir</a></li>
+                <li><i class="bx bx-chevron-right"></i> <a href="#">Situs COD</a></li>
+                <li><i class="bx bx-chevron-right"></i> <a href="#">Kunjungan Industri</a></li>
+                <li><i class="bx bx-chevron-right"></i> <a href="#">Pelatihan Markering</a></li>
+                <li><i class="bx bx-chevron-right"></i> <a href="#">Pelatihan Pertanian</a></li>
               </ul>
             </div>
   
             <div class="col-lg-4 col-md-6 footer-newsletter">
-              <h4>Our Newsletter</h4>
-              <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+              <h4>Tentang Jeruk</h4>
+              <p>Kebun jeruk terlengkap yang bisa jadi objek pendidikan maupun ekonomi</p>
               <form action="" method="post">
                 <input type="email" name="email"><input type="submit" value="Subscribe">
               </form>
