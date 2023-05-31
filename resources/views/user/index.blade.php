@@ -31,10 +31,10 @@
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->phone }}</td>
-                                    <td><span>{{ $user->role }}</span></td>
-                                    {{-- <td>
+                                    {{-- <td><span>{{ $user->role }}</span></td> --}}
+                                    <td>
                                         <span class="badge  {{ $user->role->name == 'Admin' ? 'bg-success' : 'bg-primary' }}">{{ $user->role->name }}</span>
-                                    </td> --}}
+                                    </td>
                                     <td>
                                         <form action="{{ route('user.destroy', $user->id) }}" method="POST" class="d-inline">
                                             <a href="{{ route('user.edit', $user->id) }}" class="btn btn-warning">Edit</a>

@@ -78,78 +78,62 @@
 
       <div class="carousel-inner" role="listbox">
 
-        <!-- Slide 1 -->
-        <div class="carousel-item active" style="background-image: url(assets/jeruk6.jpg)">
-          <div class="carousel-container">
-            <div class="container">
-              <h2 class="animate__animated animate__fadeInDown">Selamat Datang di <span>Tentang Jeruk</span></h2>
-              <p class="animate__animated animate__fadeInUp">Tanaman jeruk merupakan tanaman buah-buahan tahunan yang secara umum dibudidayakan di lahan atau kebun yang luas, tetapi sebagian orang yang kepemilikan lahannya terbatas, sehingga tanaman jeruk ditanam di dalam Pot (Tabulampot) si pekarangan sekitar rumah tempat tinggal.</p>
-              <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
-            </div>
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+              @foreach ($slider as $slider)
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $loop->iteration - 1 }}" class="{{ $loop->first ? 'active' : '' }}"
+                      aria-current="{{ $loop->first ? 'true' : '' }}" aria-label="Slide 1"></button>
+              @endforeach
           </div>
-        </div>
-
-        <!-- Slide 2 -->
-        <div class="carousel-item" style="background-image: url(assets/jeruk2.jpg)">
-          <div class="carousel-container">
-            <div class="container">
-              <h2 class="animate__animated animate__fadeInDown">Asal Usul Jeruk</h2>
-              <p class="animate__animated animate__fadeInUp">Tanaman jeruk adalah tanaman buah tahunan yang berasal dari Asia. Cina dipercaya sebagai tempat pertama kali jeruk tumbuh. Sejak ratusan tahun yang lalu, jeruk sudah tumbuh di Indonesia baik secara alami atau dibudidayakan.</p>
-              <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
-            </div>
+          <div class="carousel-inner">
+              @foreach ($slider as $sliders)
+                  <div class="carousel-item {{ $loop->first ? 'active' : '' }}" data-bs-interval="3000">
+                      <img src="{{ asset('storage/slider/' . $slider->image) }}" class="d-block w-100" alt="{{ $slider->image }}">
+                      <div class="carousel-caption d-none d-md-block">
+                          <h5>{{ $slider->title }}</h5>
+                          <p>{{ $slider->caption }}</p>
+                      </div>
+                  </div>
+              @endforeach
           </div>
-        </div>
-
-        <!-- Slide 3 -->
-        <div class="carousel-item" style="background-image: url(assets/jeruk4.jpg)">
-          <div class="carousel-container">
-            <div class="container">
-              <h2 class="animate__animated animate__fadeInDown">Produsen Jeruk</h2>
-              <p class="animate__animated animate__fadeInUp">Memproduksi berbagai jenis jeruk yang ada di Indonesia dengan kualitas yang tinggi.</p>
-              <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
-            </div>
-          </div>
-        </div>
-
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+          </button>
       </div>
-
-      <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
-      </a>
-
-      <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
-        <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
-      </a>
-
-    </div>
   </section>
   <!-- End Hero -->
 
   <main id="main">
         <!-- Section-->
         <section class="py-5">
-            <div class="container px-4 px-lg-5 mt-5">
-                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" src="{{asset('assets/jeruk11.jpg')}}" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Jeruk Lemon</h5>
-                                    <!-- Product price-->
-                                    Rp 25.000
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to chart</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
+          <div class="card-body p-4">
+            <div class="text-center">
+                <!-- Product name-->
+                <a href="#" style="text-decoration: none" class="text-dark">
+                    <h5 class="fw-bolder">{{ $product['name'] }}</h5>
+                </a>
+                </div>
+                <!-- Product price-->
+                @if ($product['sale_price'] != 0)
+                    <span class="text-muted text-decoration-line-through">Rp.{{ number_format($product['price'], 0) }}</span>
+                    Rp.{{ number_format($product['sale_price'], 0) }}
+                @else
+                    Rp.{{ number_format($product['price'], 0) }}
+                @endif
+            </div>
+        </div>
+        <!-- Product actions-->
+        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+        </div>
+              </div>
+          </div>
+                    {{-- <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Sale badge-->
                             <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
@@ -330,7 +314,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </section>
 
     </main><!-- End #main -->

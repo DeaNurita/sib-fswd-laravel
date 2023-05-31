@@ -12,7 +12,7 @@ class LandingController extends Controller
     //
     public function index() {
         //mengambil 8 data secara acak
-        $product = Product::inRandomOrder(8)->get();
+        $product = Product::all();
 
         //mengambil data category
         $category = Category::all();

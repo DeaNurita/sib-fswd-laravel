@@ -59,7 +59,7 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
-            'role' => $request->role,
+            'role_id' => $request->role,
             'password' => $request->password, // default password, sementara di hardcode
             //'image' => $request->image,
         ]);
