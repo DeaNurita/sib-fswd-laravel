@@ -96,7 +96,7 @@ class UserController extends Controller
         $roles = Role::all();
         
         // Tampilkan halaman edit dengan passing data user dan roles
-        return view('user.edit', compact('user', 'roles'));
+        return view('user.edit', compact('user', 'role'));
     }
 
     /**

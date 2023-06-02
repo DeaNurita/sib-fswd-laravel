@@ -7,7 +7,7 @@
 
             <div class="card mb-4">
                 <div class="card-body">
-                    <form action="{{ route('product.store', $product->id) }}" method="POST">
+                    <form action="{{ route('product.update', $product->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="mb-3">
@@ -27,6 +27,10 @@
                             <label for="price" class="form-label">Price</label>
                             <input type="text" class="form-control" id="price" name="price" required>
                             </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Product Image</label>
+                            <input class="form-control" type="file" name="image" id="image" accept=".jpg, .jpeg, .png., .webp">
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                         <a href="{{ route('product.index') }}" class="btn btn-secondary">Cancel</a>

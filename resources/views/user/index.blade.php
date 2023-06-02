@@ -33,7 +33,7 @@
                                     <td>{{ $user->phone }}</td>
                                     {{-- <td><span>{{ $user->role }}</span></td> --}}
                                     <td>
-                                        <span class="badge  {{ $user->role->name == 'Admin' ? 'bg-success' : 'bg-primary' }}">{{ $user->role->name }}</span>
+                                        <span class="badge  {{ $user->role->name == 'admin' ? 'bg-success' : 'bg-primary' }}">{{ $user->role->name }}</span>
                                     </td>
                                     <td>
                                         <form action="{{ route('user.destroy', $user->id) }}" method="POST" class="d-inline">

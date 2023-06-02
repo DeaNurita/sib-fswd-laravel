@@ -47,7 +47,7 @@ public function create()
         $slider = Slider::find($id);
 
         // load view edit.blade.php dan passing data slider
-        return view('slider.edit', compact('sliders'));
+        return view('slider.edit', compact('slider'));
     }
 
     public function update(Request $request, $id)

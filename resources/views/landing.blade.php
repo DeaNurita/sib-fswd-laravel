@@ -44,29 +44,42 @@
   <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="index.html">Tentang Jeruk</a></h1>
+      <h1 class="logo me-auto"><a href="{{route('landing')}}">Tentang Jeruk</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
-      <a href="#" class="logo me-auto"><img src="assets/iconjeruk.png" alt="" class="img-fluid"></a>
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="#" class="active">Home</a></li>
 
-          <li class="dropdown"><a href="#"><span>Product</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a class="nav-link" href="#">Kategori</a></li>
-              <li><a class="nav-link" href="#">Daftar Product</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                @foreach ($category as $category)
+                    <li><a class="dropdown-item" href="#!">{{ $category->name }}</a></li>
+                @endforeach
             </ul>
-          </li>
-          
-          <li><a href="blog.html">Blog</a></li>
+        </li>
+    </ul>
+    <form class="d-flex">
+        <a class="btn btn-outline-light" role="button" href="#">
+            <i class="bi-cart-fill me-1"></i>
+            Cart
+            <span class="badge bg-light text-dark ms-1 rounded-pill">0</span>
+        </a>
 
-          <li><a href="contact.html">Contact</a></li>
-          <li><a  href="{{ route('dashboard') }}" class="btn btn-outline-dark ms-1 getstarted">Log In</a></li>
+        @auth
+            <a href="{{ route('dashboard') }}" class="btn btn-outline-light ms-1">
+                <i class="bi-person-fill me-1"></i>
+                Dashboard
+            </a>
+        @endauth
+
+         @guest
+          <li><a href="{{ route('login') }}" class="btn btn-outline-dark ms-1 getstarted">Log In</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
-
+        @endguest
     </div>
   </header><!-- End Header -->
 
@@ -77,245 +90,92 @@
       <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
 
       <div class="carousel-inner" role="listbox">
-
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-indicators">
-              @foreach ($slider as $slider)
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $loop->iteration - 1 }}" class="{{ $loop->first ? 'active' : '' }}"
-                      aria-current="{{ $loop->first ? 'true' : '' }}" aria-label="Slide 1"></button>
-              @endforeach
-          </div>
-          <div class="carousel-inner">
-              @foreach ($slider as $sliders)
-                  <div class="carousel-item {{ $loop->first ? 'active' : '' }}" data-bs-interval="3000">
-                      <img src="{{ asset('storage/slider/' . $slider->image) }}" class="d-block w-100" alt="{{ $slider->image }}">
-                      <div class="carousel-caption d-none d-md-block">
-                          <h5>{{ $slider->title }}</h5>
-                          <p>{{ $slider->caption }}</p>
-                      </div>
-                  </div>
-              @endforeach
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-          </button>
+    
+    {{-- slide1 --}}
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+          @foreach ($slider as $slider)
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $loop->iteration - 1 }}" class="{{ $loop->first ? 'active' : '' }}"
+                  aria-current="{{ $loop->first ? 'active' : '' }}" aria-label="Slide 1"></button>
+          @endforeach
       </div>
+      <div class="carousel-inner">
+          @foreach ($slider as $sliders)
+              <div class="carousel-item {{ $loop->first ? 'active' : '' }}" data-bs-interval="3000">
+                  <img src="{{ asset('storage/slider/' . $slider->image) }}" class="d-block w-100" alt="{{ $slider->image }}">
+                  <div class="carousel-caption d-none d-md-block">
+                      <h5>{{ $slider->title }}</h5>
+                      <p>{{ $slider->caption }}</p>
+                  </div>
+                  <a href="#" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+              </div>
+          @endforeach
+    </div>
+    </div>
+      <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+      </a>
+
+      <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+      </a>
+  </div>
   </section>
   <!-- End Hero -->
 
   <main id="main">
         <!-- Section-->
         <section class="py-5">
-          <div class="card-body p-4">
-            <div class="text-center">
-                <!-- Product name-->
-                <a href="#" style="text-decoration: none" class="text-dark">
-                    <h5 class="fw-bolder">{{ $product['name'] }}</h5>
-                </a>
-                </div>
-                <!-- Product price-->
-                @if ($product['sale_price'] != 0)
-                    <span class="text-muted text-decoration-line-through">Rp.{{ number_format($product['price'], 0) }}</span>
-                    Rp.{{ number_format($product['sale_price'], 0) }}
-                @else
-                    Rp.{{ number_format($product['price'], 0) }}
-                @endif
-            </div>
-        </div>
-        <!-- Product actions-->
-        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-        </div>
+          <div class="container px-4 px-lg-5 mt-5">
+              <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+      
+                  @forelse ($product as $product)
+                      <div class="col mb-5">
+                          <div class="card h-100">
+                              @if ($product['sale_price'] != 0)
+                                  <!-- Sale badge-->
+                                  <div class="badge bg-success text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+                              @endif
+      
+                              <!-- Product image-->
+                              <img class="card-img-top" src="{{ asset('storage/product/' . $product->image) }}" alt="{{ $product->name }}" />
+      
+                              <!-- Product details-->
+                              <div class="card-body p-4">
+                                  <div class="text-center">
+                                      <!-- Product name-->
+                                      <a href="#" style="text-decoration: none" class="text-dark">
+                                          <h5 class="fw-bolder">{{ $product->name }}</h5>
+                                      </a>
+                                      <!-- Product reviews-->
+                                      <div class="d-flex justify-content-center small text-warning mb-2">
+                                          @for ($i = 0; $i < $product->rating; $i++)
+                                              <div class="bi-star-fill"></div>
+                                          @endfor
+                                      </div>
+                                      <!-- Product price-->
+                                      @if ($product['sale_price'] != 0)
+                                          <span class="text-muted text-decoration-line-through">Rp.{{ number_format($product->price, 0) }}</span>
+                                          Rp.{{ number_format($product->sale_price, 0) }}
+                                      @else
+                                          Rp.{{ number_format($product->price, 0) }}
+                                      @endif
+                                  </div>
+                              </div>
+                              <!-- Product actions-->
+                              <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                  <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+                              </div>
+                          </div>
+                      </div>
+                  @empty
+                      <div class="alert alert-secondary w-100 text-center" role="alert">
+                          <h4>Produk belum tersedia</h4>
+                      </div>
+                  @endforelse
               </div>
           </div>
-                    {{-- <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Sale badge-->
-                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-                            <!-- Product image-->
-                            <img class="card-img-top" src="{{asset('assets/jeruk12.jpg')}}" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Jeruk Nipis</h5>
-                                    <!-- Product reviews-->
-                                    <div class="d-flex justify-content-center small text-warning mb-2">
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                    </div>
-                                    <!-- Product price-->
-                                    <span class="text-muted text-decoration-line-through">Rp 60.000</span>
-                                    Rp 30.000
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Sale badge-->
-                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-                            <!-- Product image-->
-                            <img class="card-img-top" src="{{asset('assets/jeruk13.jpg')}}" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Jeruk Kumquat/Nagami</h5>
-                                    <!-- Product price-->
-                                    <span class="text-muted text-decoration-line-through">Rp 60.000</span>
-                                    Rp 50.000
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" src="{{asset('assets/jeruk14.jpg')}}" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Satsuma Mandarin</h5>
-                                    <!-- Product reviews-->
-                                    <div class="d-flex justify-content-center small text-warning mb-2">
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                    </div>
-                                    <!-- Product price-->
-                                    Rp 15.000
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Sale badge-->
-                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-                            <!-- Product image-->
-                            <img class="card-img-top" src="{{asset('assets/jeruk15.jpg')}}" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Jeruk Purut</h5>
-                                    <!-- Product price-->
-                                    <span class="text-muted text-decoration-line-through">Rp20.000</span>
-                                    Rp 10.000
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Sale badge-->
-                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-                            <!-- Product image-->
-                            <img class="card-img-top" src="{{asset('assets/jeruk16.jpg')}}" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Jeruk limau</h5>
-                                    <!-- Product price-->
-                                    <span class="text-muted text-decoration-line-through">Rp 30.000</span>
-                                    Rp 25.000
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Sale badge-->
-                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-                            <!-- Product image-->
-                            <img class="card-img-top" src="{{asset('assets/jeruk1.jpg')}}" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Jeruk Navel</h5>
-                                    <!-- Product reviews-->
-                                    <div class="d-flex justify-content-center small text-warning mb-2">
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                    </div>
-                                    <!-- Product price-->
-                                    <span class="text-muted text-decoration-line-through">Rp 30.000</span>
-                                    Rp 27.000
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" src="{{asset('assets/jeruk3.jpg')}}" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Jeruk Valencia</h5>
-                                    <!-- Product reviews-->
-                                    <div class="d-flex justify-content-center small text-warning mb-2">
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                    </div>
-                                    <!-- Product price-->
-                                    Rp 35.000
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-        </section>
+      </section>
 
     </main><!-- End #main -->
 
@@ -378,7 +238,6 @@
           </div>
         </div>
       </div>
-  
 
         <div class="container">
             <div class="copyright">
